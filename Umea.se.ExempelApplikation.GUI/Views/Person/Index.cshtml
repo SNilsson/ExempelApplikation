@@ -1,0 +1,89 @@
+﻿@model Umea.se.ExempelApplikation.GUI.Models.SokPersonViewModel
+
+@{
+    ViewBag.Title = Strings.SokPersoner;
+}
+
+<div class="page-header">
+    <h1>@ViewBag.Title</h1>
+</div>
+
+
+@using (Html.BeginForm("Index", "Person", FormMethod.Get, new { role = "form" }))
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-2">
+                <div class="form-group original">
+                    @Html.LabelFor(model => model.FirstName)
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                </div>
+            </div>
+           <div class="col-md-2">
+                <div class="form-group original">
+                    @Html.LabelFor(model => model.Discriminator)
+                    @Html.EnumDropDownListFor(m => m.Discriminator, @Strings.Valj_dot, new { @class = "selectpicker toolbar-responsive-control toolbar-button-separator form-control" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group original no-bottom-margin">
+                    <label class="hidden-sm hidden-xs">
+                        &nbsp;
+                    </label>
+                    <p class="no-margin">
+                        @Html.HiddenFor(model => model.HideResults)
+                        <button type="submit" class="btn btn-primary">@Strings.Sok</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.PersonList.Any())
+{
+    <div id="resultPanel">
+        <table id="personinformation" class="table table-condensed table-striped table-hover table-bordered table-rowlinks">
+            <thead>
+                <tr>
+                    <th nowrap="nowrap">@Strings.Fornamn</th>
+                    <th nowrap="nowrap">@Strings.Efternamn</th>
+                    <th nowrap="nowrap">@Strings.Diskriminator</th>
+                    <th class="action-col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var person in Model.PersonList)
+                {
+                    string tempAction = "";
+                    tempAction = "location.href = '" + Url.Action("Details", "Person", new { id = person.ID, returnUrl = @Html.AppendNonExistingAttributeToUrl(Request.RawUrl, "refreshFilters", "false"), editMode = false, IsNyAnvandare = false }, null) + "'";
+
+                    <tr>
+                        <td onclick="@tempAction">@person.FirstName</td>
+                        <td onclick="@tempAction">@person.LastName</td>
+                        <td onclick="@tempAction">@person.Discriminator</td>
+                        <td onclick="removePerson('@person.ID')" class="center-align action-col"><span class="glyphicon glyphicon-remove"></span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else if (Model.HideResults == false)
+{
+    <div id="noResults" class="alert alert-info">
+        <strong>@Strings.Sokningen_gav_inga_traffar</strong>
+    </div>
+}
+
+@section styles {
+    @Styles.Render("~/content/datatables")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatables")
+    @Scripts.Render("~/bundles/personIndex")
+}
+
+
+

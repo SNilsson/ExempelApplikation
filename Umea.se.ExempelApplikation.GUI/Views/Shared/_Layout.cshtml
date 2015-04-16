@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @Html.MetaAcceptLanguage()
+        <title>@ViewBag.Title - ExempelApplikation</title>
+        @Styles.Render("~/Content/css")
+        @RenderSection("styles", required: false)
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        @Html.Partial("_MainMenu")
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer class="pull-left">Exempelapplikation ver 1.0, <span style="display: inline-block">Copyright &copy; 2014 Umeå kommun</span>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/core")
+
+       
+        @Html.Partial("_Notification")
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
+

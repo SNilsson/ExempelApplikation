@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Umea.se.ExempelApplikation.ServiceTier.HemortService" CodeBehind="HemortService.svc.cs" %>

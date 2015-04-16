@@ -1,0 +1,37 @@
+﻿@model Umea.se.ExempelApplikation.GUI.Models.HemortViewModel
+
+@{
+    ViewBag.Title = Strings.Orter;
+}
+
+<div class="page-header">
+    <h1>@ViewBag.Title</h1>
+</div>
+@using (Html.BeginForm("Index", "Person", FormMethod.Get, new { role = "form" }))
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+           <div class="col-md-2">
+                <div class="form-group original">
+                    @Html.LabelFor(model => model.CountryList)
+                    @Html.DropDownListFor(m => m.CountryVal,  new SelectList(Model.CountryList, "CountryID", "CountryText"), Strings.Valj_dot, new { @class = "toolbar-responsive-control toolbar-button-separator form-control", onchange="countryChanged()"}) 
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div id="hemortPanel">
+    @Html.Partial("_Homes", Model.HemortList)
+</div>
+
+    @section styles {
+        @Styles.Render("~/content/datatables")
+    }
+
+    @section scripts{
+        @Scripts.Render("~/bundles/datatables")
+        @Scripts.Render("~/bundles/hemortIndex")
+    }
+
+
+

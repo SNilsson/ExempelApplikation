@@ -1,0 +1,169 @@
+﻿@model Umea.se.ExempelApplikation.GUI.Models.PersonViewModel
+@{
+    ViewBag.Title = Strings.Person;
+}
+
+<div class="float-container">
+    <div class="page-header">
+        <h1>@ViewBag.Title</h1>
+    </div>
+</div>
+
+@using (Html.BeginForm("Details", "Person", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "detailsform" }))
+{
+        @Html.HiddenFor(m => m.EditMode)
+        @Html.HiddenFor(m => m.ReturnUrl)
+        @Html.HiddenFor(m => m.PersonInformation.ID)
+
+        <div class="well well-sm toolbar-responsive">
+            @if (Model.EditMode)
+            {
+                <button type="submit" class="btn btn-primary toolbar-responsive-control" onclick="ValidateForm();">@Strings.Spara</button>
+                <button id="avbryt" type="button" class="btn btn-default toolbar-button-separator toolbar-responsive-control" onclick="location.href='@Url.Action("Details", "Person", new {id = @Model.PersonInformation.ID, returnUrl = Model.ReturnUrl, editMode = false})'">@Strings.AvbrytRedigering</button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-primary toolbar-responsive-control" onclick=" location.href='@Url.Action("Details", "Person", new {id = Model.PersonInformation.ID, returnUrl = Model.ReturnUrl, editMode = "true"}, null)' ">@Strings.Redigera</button>
+                <button type="button" class="btn btn-default toolbar-responsive-control toolbar-button-separator" onclick="@Html.GetReturnUrlAction(Model.ReturnUrl)">@Strings.Tillbaka</button>
+            }
+            <button type="button" class="btn btn-default toolbar-responsive-control" data-toggle="modal" data-target="#FreeModal">@Strings.Free</button>
+            <button type="button" class="btn btn-default toolbar-responsive-control" onclick="location.href='@Url.Action("ErrorHantering", "Person")'">@Strings.Felhantering</button>
+        </div>
+        @Html.Partial("_Alert")
+        <div class="page-header">
+            <h2></h2>
+        </div>
+        <div class="row">
+            @{
+            object htmlAttributes;
+            if (@Model.EditMode)
+            {
+                htmlAttributes = new { @class = "form-control", style = "float: left;" };
+            }
+            else
+            {
+                htmlAttributes = new { @class = "form-control", @readonly = "readonly" };
+            }
+            }
+            <div class="col-md-12">
+                <div id="PersonError" class="alert alert-danger hidden">
+                    <strong>@Html.Raw(HttpUtility.HtmlDecode("Personuppgifterna är inte korrekt ifyllda, rödmarkerade fält är obligatoriska."))</strong>
+                </div>
+                <fieldset>
+                    <legend>
+                        @Strings.Personuppgifter
+                    </legend>
+                    <div class="col-md-5 no-right-left-padding">
+                        <div class="col-sm-6">
+                            <div class="form-group-vertical">
+                                @Html.LabelFor(m => m.PersonInformation.FirstName, new { style = "white-space: nowrap" })
+                                @Html.TextBoxFor(m => m.PersonInformation.FirstName, htmlAttributes)
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group-vertical">
+                                @Html.LabelFor(m => m.PersonInformation.LastName, new { style = "white-space: nowrap" })
+                                @Html.TextBoxFor(m => m.PersonInformation.LastName, htmlAttributes)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 no-right-left-padding">
+                        <div class="col-sm-6">
+                            <div class="form-group-vertical">
+                                @Html.LabelFor(m => m.Homes, new { style = "white-space: nowrap" })
+                                @Html.DropDownListFor(m => m.PersonInformation.HomeId, new SelectList(Model.Homes, "HomeId", "HomeText"), new { @class = "selectpicker toolbar-responsive-control toolbar-button-separator form-control", data_live_search = "True"  })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group-vertical">
+                                @Html.LabelFor(m => m.DiscriminatorVal, new { style = "white-space: nowrap" })
+                                <div id="DivInstructor">
+                                    @Html.EnumDropDownListFor(m => m.DiscriminatorVal, @Strings.Valj_dot, new { @class = "selectpicker toolbar-responsive-control toolbar-button-separator form-control", onchange = "hideShowFromDiskriminator();" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <br />
+            </div>
+            <div class="col-md-12 instructor">
+                <fieldset>
+                    <legend>
+                        @Strings.InstructorUppgifter
+                    </legend>
+                    <div class="col-md-5 no-right-left-padding">
+                        <div class="col-sm-6">
+                            <div class="form-group-vertical">
+                                @Html.LabelFor(model => model.Courses, new { style = "white-space: nowrap" })
+                                @Html.HiddenFor(m => m.CourseDefaultVal, new { id = "course-default" })
+                                <div>
+                                    @Html.DropDownListFor(m => m.CourseVal, new SelectList(Model.Courses, "CourseID", "Title"), new { @class = "selectpicker selectpickercourse toolbar-responsive-control toolbar-button-separator form-control", multiple = "true", id = "cource-select" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group-vertical">
+                                @Html.LabelFor(model => model.PersonInformation.HireDate)
+                                @Html.TextBoxFor(model => model.PersonInformation.HireDate, "{0:" + Strings.DatumFormatCode + "}", new { @class = "form-control date-picker", placeholder = Strings.DatumFormat })
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+    }
+<div id="FreeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="freeModalTitle">@Strings.Free</h3>
+            </div>
+            <div class="modal-body">
+                <div id="pappersfakturaModalError" class="alert alert-danger hidden"><strong id="pappersfakturaModalErrorText"></strong></div>
+                @using (Html.BeginForm("Free", "Person", FormMethod.Post, new { id = "freeForm" }))
+                {
+                    @Html.Hidden("personId", Model.PersonInformation.ID)
+                    @Html.Hidden("returnUrl", Model.ReturnUrl)
+
+                    <div>
+                        <div class="checkbox">
+                            <label>
+                                <input id="freeChoice" name="freeChoice" type="checkbox" /> @Strings.Free
+                            </label>
+                       </div>
+                   </div>
+                    <div class="modal-footer" style="margin-top: 0">
+                        <button type="submit" class="btn btn-primary">@Strings.Spara</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@Strings.Stang</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section styles {
+    @Styles.Render("~/content/bootstrap-select-css")
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/personDetails")
+    @Scripts.Render("~/bundles/bootstrap-select")
+    @Scripts.Render("~/bundles/datepicker")
+    <script src="@Url.Content(GlobalizationHelper.GlobalizeDatePicker)" type="text/javascript"></script>
+
+    <script type="text/javascript">
+            window.scriptResources = {
+                EditMode: '@Model.EditMode.ToString().ToLower()',
+                Val_dot: '@Strings.Valj_dot'
+            };
+    </script>
+}
+
+

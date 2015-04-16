@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE7A77E2-09A1-42FF-AD54-B56589FF4853}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Umea.se.ExempelApplikation.ServiceWrapper</RootNamespace>
+    <AssemblyName>Umea.se.ExempelApplikation.ServiceWrapper</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\ICourseServiceWrapper.cs" />
+    <Compile Include="Contracts\IHemortServiceWrapper.cs" />
+    <Compile Include="Contracts\IPersonServiceWrapper.cs" />
+    <Compile Include="CourseServiceWrapper.cs" />
+    <Compile Include="Helpers\ErrorHelper.cs" />
+    <Compile Include="HemortServiceWrapper.cs" />
+    <Compile Include="PersonServiceWrapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CourseServiceTier\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\HemortServiceTier\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PersonServiceTier\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Umea.se.ExempelApplikation.DataObjectLibrary\Umea.se.ExempelApplikation.DataObjectLibrary.csproj">
+      <Project>{42577f8c-97ad-4896-af28-606cf05e6b7b}</Project>
+      <Name>Umea.se.ExempelApplikation.DataObjectLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Umea.se.ExempelApplikation.Utilities\Umea.se.ExempelApplikation.Utilities.csproj">
+      <Project>{4b047761-9cf7-4d27-8a5f-bc4ada0d75b1}</Project>
+      <Name>Umea.se.ExempelApplikation.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\Umea.se.ExempelApplikation.DataObjectLibrary.Country.datasource" />
+    <None Include="Properties\DataSources\Umea.se.ExempelApplikation.DataObjectLibrary.Course.datasource" />
+    <None Include="Properties\DataSources\Umea.se.ExempelApplikation.DataObjectLibrary.Home.datasource" />
+    <None Include="Service References\CourseServiceTier\CourseService.wsdl" />
+    <None Include="Service References\CourseServiceTier\CourseService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CourseServiceTier\CourseService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CourseServiceTier\CourseService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CourseServiceTier\CourseService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HemortServiceTier\HemortService.wsdl" />
+    <None Include="Service References\HemortServiceTier\HemortService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HemortServiceTier\HemortService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HemortServiceTier\HemortService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\HemortServiceTier\HemortService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PersonServiceTier\PersonService.wsdl" />
+    <None Include="Service References\PersonServiceTier\PersonService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PersonServiceTier\PersonService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PersonServiceTier\PersonService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PersonServiceTier\PersonService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CourseServiceTier\" />
+    <WCFMetadataStorage Include="Service References\HemortServiceTier\" />
+    <WCFMetadataStorage Include="Service References\PersonServiceTier\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PersonServiceTier\PersonService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PersonServiceTier\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PersonServiceTier\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PersonServiceTier\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseServiceTier\CourseService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseServiceTier\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseServiceTier\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CourseServiceTier\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HemortServiceTier\HemortService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HemortServiceTier\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HemortServiceTier\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\HemortServiceTier\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

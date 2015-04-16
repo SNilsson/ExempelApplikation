@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B981C65-611A-4119-A22F-6A382D9C0E20}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Umea.se.ExempelApplikation.BusinessLogicLayer</RootNamespace>
+    <AssemblyName>Umea.se.ExempelApplikation.BusinessLogicLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\ICourseLogic.cs" />
+    <Compile Include="Contracts\IHemortLogic.cs" />
+    <Compile Include="Contracts\IPersonLogic.cs" />
+    <Compile Include="CourseLogic.cs" />
+    <Compile Include="HemortLogic.cs" />
+    <Compile Include="PersonLogic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Umea.se.ExempelApplikation.DataAccessLayer\Umea.se.ExempelApplikation.DataAccessLayer.csproj">
+      <Project>{5cf76018-9854-4467-85aa-f5ba5a64e517}</Project>
+      <Name>Umea.se.ExempelApplikation.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Umea.se.ExempelApplikation.DataObjectLibrary\Umea.se.ExempelApplikation.DataObjectLibrary.csproj">
+      <Project>{42577f8c-97ad-4896-af28-606cf05e6b7b}</Project>
+      <Name>Umea.se.ExempelApplikation.DataObjectLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Umea.se.ExempelApplikation.ExtDataAccessLayer\Umea.se.ExempelApplikation.ExtDataAccessLayer.csproj">
+      <Project>{0aecb54f-e14e-4788-9174-500151699b59}</Project>
+      <Name>Umea.se.ExempelApplikation.ExtDataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Umea.se.ExempelApplikation.Utilities\Umea.se.ExempelApplikation.Utilities.csproj">
+      <Project>{4b047761-9cf7-4d27-8a5f-bc4ada0d75b1}</Project>
+      <Name>Umea.se.ExempelApplikation.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

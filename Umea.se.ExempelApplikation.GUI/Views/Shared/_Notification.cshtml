@@ -1,0 +1,22 @@
+﻿@if (TempData[Constants.MessageTypes.Notification] != null)
+{
+    @Styles.Render("~/content/toastr-css")
+    @Scripts.Render("~/bundles/toastr")
+
+    var notification = TempData[Constants.MessageTypes.Notification].ToString().Split('#');
+
+    <script type="text/javascript">
+
+        if (window.$messages === undefined)
+            window.$messages = {};
+
+        window.$messages.notificationType = "@notification[0]";
+        window.$messages.notificationMessage = "@notification[1]";
+
+        @if (notification.Length == 3)
+        {
+            @:window.$messages.notificationTitle = "@notification[2]";
+        }
+    </script>
+}
+

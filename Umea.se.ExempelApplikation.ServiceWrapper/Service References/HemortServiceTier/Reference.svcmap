@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2346fe3c-6cda-4fff-b68a-435d85293055" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:57583/HemortService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HemortService.disco" MetadataType="Disco" ID="86a8f60f-0000-442f-8a2a-42a09f55346a" SourceId="1" SourceUrl="http://localhost:57583/HemortService.svc?disco" />
+    <MetadataFile FileName="HemortService.xsd" MetadataType="Schema" ID="5ba6e94b-9bed-4b7d-95d5-6ee85263e592" SourceId="1" SourceUrl="http://localhost:57583/HemortService.svc?xsd=xsd2" />
+    <MetadataFile FileName="HemortService1.xsd" MetadataType="Schema" ID="5954d4fd-c7fe-41c4-b02f-1527e999b732" SourceId="1" SourceUrl="http://localhost:57583/HemortService.svc?xsd=xsd3" />
+    <MetadataFile FileName="HemortService2.xsd" MetadataType="Schema" ID="ee401adb-fb03-480c-977b-c673ed36ca1e" SourceId="1" SourceUrl="http://localhost:57583/HemortService.svc?xsd=xsd0" />
+    <MetadataFile FileName="HemortService3.xsd" MetadataType="Schema" ID="9bd55775-5712-44be-9192-6eb916e7394f" SourceId="1" SourceUrl="http://localhost:57583/HemortService.svc?xsd=xsd1" />
+    <MetadataFile FileName="HemortService.wsdl" MetadataType="Wsdl" ID="b1e34ff4-7dcc-410f-bb72-f996152fcb54" SourceId="1" SourceUrl="http://localhost:57583/HemortService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

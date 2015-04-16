@@ -1,0 +1,53 @@
+﻿@model HandleErrorInfo
+
+@{
+    ViewBag.Title = Strings.Ett_fel_har_uppstatt;
+}
+
+<div class="alert alert-danger">
+    <h3><strong>@ViewBag.Title</strong></h3>
+    <p>
+        @Strings.Var_snall_meddela
+    </p>
+    <br />
+</div>
+
+<table class="table table-condensed table-striped table-bordered">
+    <tr>
+        <td><strong>Controller</strong></td>
+        <td>@Model.ControllerName</td>
+    </tr>
+    <tr>
+        <td><strong>Action</strong></td>
+        <td>@Model.ActionName</td>
+    </tr>
+    <tr>
+        <td><strong>Exception</strong></td>
+        <td>
+            @Html.Raw(Model.Exception.Data.Contains("Type") ? Model.Exception.Data["Type"].ToString() : Model.Exception.GetType().Name)
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Message</strong></td>
+        <td>@Model.Exception.Message</td>
+    </tr>
+    @if (Model.Exception.InnerException != null)
+    {
+        <tr>
+            <td><strong>Inner Exception Message</strong></td>
+            <td>@Model.Exception.InnerException.Message</td>
+        </tr>
+    }
+    <tr>
+        <td><strong>Log Source</strong></td>
+        <td>@Model.Exception.Data["LogSource"]</td>
+    </tr>
+    <tr>
+        <td><strong>Log Id</strong></td>
+        <td>@Model.Exception.Data["LogId"]</td>
+    </tr>
+    <tr>
+        <td><strong>Time</strong></td>
+        <td>@Html.Raw(DateTime.Now.ToString())</td>
+    </tr>
+</table>

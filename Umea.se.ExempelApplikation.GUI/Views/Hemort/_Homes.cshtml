@@ -1,0 +1,27 @@
+﻿@model List<Umea.se.ExempelApplikation.DataObjectLibrary.Home>
+@if (Model.Any())
+{
+    <div id="resultPanel">
+        <table id="personinformation" class="table table-condensed table-striped table-hover table-bordered table-rowlinks">
+            <thead>
+                <tr>
+                    <th nowrap="nowrap">@Strings.Ort</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var home in Model)
+                {
+                    <tr>
+                        <td>@home.HomeText</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div id="noResults" class="alert alert-info">
+        <strong>@Strings.Sokningen_gav_inga_traffar</strong>
+    </div>
+}

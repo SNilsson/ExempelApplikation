@@ -1,0 +1,13 @@
+﻿@if (TempData[Constants.MessageTypes.Alert] != null)
+{
+    var errorMessage = TempData[Constants.MessageTypes.Alert].ToString().Split('#');
+
+    <div class="alert alert-dismissable alert-@Html.Raw(errorMessage[0])">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <span class="glyphicon glyphicon-exclamation-sign">&nbsp;</span><strong>@errorMessage[1]</strong>&nbsp;&nbsp;
+        @if (errorMessage.Length > 2)
+        {
+            Write(errorMessage[2]);
+        }
+    </div>
+}
